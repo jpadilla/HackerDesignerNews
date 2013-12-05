@@ -1,0 +1,24 @@
+{
+  "name": "HackerDesignerNews",
+  "version": "0.0.1",
+  "description": "Hacker News and Designer News aggregator",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "José Padilla",
+  "license": "MIT",
+  "dependencies": {
+    "request": "~2.27.0",
+    "mongoose": "~3.8.1",
+    "express": "~3.4.5",
+    "hbs": "~2.4.0",
+    "connect-mongo": "~0.4.0",
+    "async": "~0.2.9",
+    "nodetime": "~0.8.14",
+    "cors": "~2.1.0",
+    "feedparser": "~0.16.3",
+    "q": "~0.9.7",
+    "cheerio": "~0.12.4"
+  }
+}
