@@ -1,10 +1,10 @@
 var mongoose = require('mongoose'),
+  generateResponse = require('../helpers/posts').generateResponse,
   Post = mongoose.model('Post');
 
 exports.index  = function(req, res) {
-  var conditions = {
-    top: true
-  };
+  var format = req.params.format || 'json',
+    conditions = {top: true};
 
   if(req.params.source == 'hn') {
     conditions.source = 'hacker_news';
@@ -17,6 +17,6 @@ exports.index  = function(req, res) {
     .lean()
     .exec(function(err, posts) {
       if(err) return res.render('500');
-      return res.json(posts);
+      return generateResponse(res, format, posts);
   });
 };
