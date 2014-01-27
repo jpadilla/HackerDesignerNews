@@ -1,3 +1,5 @@
+'use strict';
+
 var posts = require('../app/controllers/posts');
 
 module.exports = function(app) {

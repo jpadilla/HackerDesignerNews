@@ -1,3 +1,5 @@
+'use strict';
+
 var mongoose = require('mongoose');
 var audit = require('../../lib/mongoose-audit');
 var Schema = mongoose.Schema;

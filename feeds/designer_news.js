@@ -1,17 +1,18 @@
+'use strict';
+
 var Feed = require('./feed'),
-  FeedParser = require('feedparser'),
   request = require('request'),
   cheerio = require('cheerio'),
   Q = require('q');
 
 var DesignerNewsFeed = function(url) {
-    this.url = url;
+  this.url = url;
 };
 
 DesignerNewsFeed.prototype = Object.create(Feed);
 
 DesignerNewsFeed.prototype._request = function(callback) {
-    return request(this.url, callback);
+  return request(this.url, callback);
 };
 
 DesignerNewsFeed.prototype.parse = function(callback) {
@@ -19,7 +20,7 @@ DesignerNewsFeed.prototype.parse = function(callback) {
     _this = this;
 
   this._request(function(err, resp, body) {
-    if(err) deferred.reject(error);
+    if(err) deferred.reject(err);
 
     var $ = cheerio.load(body),
       $stories = $('.Story'),

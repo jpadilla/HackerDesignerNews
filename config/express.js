@@ -1,8 +1,10 @@
+'use strict';
+
 var express = require('express'),
   cors = require('cors'),
   pkg = require('../package.json');
 
-module.exports = function (app, config, passport) {
+module.exports = function (app, config) {
 
   app.set('showStackError', true);
 
@@ -66,7 +68,7 @@ module.exports = function (app, config, passport) {
     });
 
     // assume 404 since no middleware responded
-    app.use(function(req, res, next){
+    app.use(function(req, res){
       res.status(404).render('404', {
         url: req.originalUrl,
         error: 'Not found'

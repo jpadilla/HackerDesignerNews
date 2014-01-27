@@ -1,10 +1,10 @@
+'use strict';
+
 // Start Profiler
 require('./lib/profile');
 
 // Module dependencies.
-var request = require('request'),
-  cheerio = require('cheerio'),
-  mongoose = require('mongoose'),
+var mongoose = require('mongoose'),
   async = require('async'),
   config = require('./config/config');
 
@@ -12,8 +12,8 @@ var request = require('request'),
 mongoose.connect(config.db);
 
 // Require models
-var models_path = __dirname + '/app/models';
-require('./lib/models-loader')(models_path);
+var modelsPath = __dirname + '/app/models';
+require('./lib/models-loader')(modelsPath);
 
 var Post = mongoose.model('Post');
 
@@ -43,9 +43,9 @@ var createOrUpdatePosts = function(data, cb) {
         i++;
       },
       function(err) {
-          if(err) cb(err);
-          console.log('[FINISH] createOrUpdatePosts');
-          cb(null, posts);
+        if(err) cb(err);
+        console.log('[FINISH] createOrUpdatePosts');
+        cb(null, posts);
       }
   );
 };
@@ -70,14 +70,14 @@ var run = function(callback) {
       DNItems = response[1],
       posts = HNItems.concat(DNItems);
 
-      resetTopPosts(function(err) {
-        if(err) callback(err);
+    resetTopPosts(function(err) {
+      if(err) callback(err);
 
-        createOrUpdatePosts(posts, function(err, posts) {
-          if(err) callback(err);
-          callback();
-        });
+      createOrUpdatePosts(posts, function(err) {
+        if(err) callback(err);
+        callback();
       });
+    });
 
   }, function(rej) {
     callback(rej);

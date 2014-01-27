@@ -1,16 +1,18 @@
+'use strict';
+
 var Feed = require('./feed'),
   FeedParser = require('feedparser'),
   request = require('request'),
   Q = require('q');
 
 var HackerNewsFeed = function(url) {
-    this.url = url;
+  this.url = url;
 };
 
 HackerNewsFeed.prototype = Object.create(Feed);
 
 HackerNewsFeed.prototype._request = function() {
-    return request(this.url);
+  return request(this.url);
 };
 
 HackerNewsFeed.prototype.parse = function(callback) {
@@ -64,7 +66,7 @@ HackerNewsFeed.prototype.parse = function(callback) {
       deferred.resolve(items);
     });
 
-    return deferred.promise.nodeify(callback);
+  return deferred.promise.nodeify(callback);
 };
 
 module.exports = HackerNewsFeed;

@@ -1,3 +1,5 @@
+'use strict';
+
 var mongoose = require('mongoose'),
   generateResponse = require('../helpers/posts').generateResponse,
   Post = mongoose.model('Post');
@@ -6,9 +8,9 @@ exports.index  = function(req, res) {
   var format = req.params.format || 'json',
     conditions = {top: true};
 
-  if(req.params.source == 'hn') {
+  if(req.params.source === 'hn') {
     conditions.source = 'hacker_news';
-  } else if(req.params.source == 'dn') {
+  } else if(req.params.source === 'dn') {
     conditions.source = 'designer_news';
   }
 
@@ -18,5 +20,5 @@ exports.index  = function(req, res) {
     .exec(function(err, posts) {
       if(err) return res.render('500');
       return generateResponse(res, format, posts);
-  });
+    });
 };

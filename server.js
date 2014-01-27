@@ -1,9 +1,10 @@
+'use strict';
+
 // Start Profiler
 require('./lib/profile');
 
 // Module dependencies.
-var express = require('express'),
-  fs = require('fs');
+var express = require('express');
 
 /**
  * Main application entry file.
@@ -19,8 +20,8 @@ var config = require('./config/config'),
 mongoose.connect(config.db);
 
 // Require models
-var models_path = __dirname + '/app/models';
-require('./lib/models-loader')(models_path);
+var modelsPath = __dirname + '/app/models';
+require('./lib/models-loader')(modelsPath);
 
 var app = express();
 
