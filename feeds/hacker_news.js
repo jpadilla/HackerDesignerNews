@@ -30,32 +30,28 @@ HackerNewsFeed.prototype.parse = function(callback) {
         item = null;
 
       while((item = stream.read())) {
-        var author,
-          points = 0,
-          comments = 0;
+        var link,
+          author = item.author,
+          points = 0;
 
-        if(item['rss:username']) {
-          author = item['rss:username']['#'];
+        if(item['atom:points']) {
+          points = item['atom:points']['#'];
         }
 
-        if(item['rss:points']) {
-          points = item['rss:points']['#'];
-        }
-
-        if(item['rss:num_comments']) {
-          comments = item['rss:num_comments']['#'];
+        if(item['atom:url']) {
+          link = item['atom:url']['#'];
         }
 
         items.push({
           top: true,
           position: index + 1,
           title: item.title,
-          link: item.link,
+          link: link,
           author: author,
           authorLink: 'https://news.ycombinator.com/user?id=' + author,
           points: points,
-          comments: comments,
-          commentsLink: item['rss:comments']['#'],
+          comments: parseInt(item.comments, 10),
+          commentsLink: item.link,
           source: 'hacker_news'
         });
 

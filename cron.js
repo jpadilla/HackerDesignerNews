@@ -57,7 +57,7 @@ var run = function(callback) {
     HackerNewsFeed  = require('./feeds/hacker_news'),
     DesignerNewsFeed = require('./feeds/designer_news');
 
-  var HNFeed = new HackerNewsFeed('http://hnsearch.com/rss'),
+  var HNFeed = new HackerNewsFeed('http://hn.algolia.com/rss'),
     DNFeed = new DesignerNewsFeed('https://news.layervault.com');
 
   var queue = [
